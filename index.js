@@ -17,9 +17,6 @@ class Logo {
   }
 }
 
-
-
-
 const questions = () => {
   return inquirer.prompt([
       {
@@ -58,5 +55,9 @@ const questions = () => {
 
 
 
-
 questions();
+
+
+
+//jest is installed. Should run code using jest
+
