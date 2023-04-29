@@ -1,5 +1,24 @@
 const inquirer = require("inquirer");
+const {Triangle, Square, Circle} = require("./lib/shape")
 const fs = require("fs");
+class Logo {
+  constructor() {
+    this.text = "";
+    this.shape = "";
+  }
+  setText_color(initials, color){
+    this.text = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${initials}</text>`
+  }
+  setShape(shape){
+    this.shape = shape.render();
+  }
+  render(){
+    return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">${this.text}${this.shape}</scg>`
+  }
+}
+
+
+
 
 const questions = () => {
   return inquirer.prompt([
@@ -31,29 +50,13 @@ const questions = () => {
     ])
     .then((answers) => {
       console.log(answers);
-      const svgLogo = genSvg(answers)
-      writeToFile(`logo.svg`, svgLogo)
+      fs.writeFile("logo.svg", answers, (err) => 
+      err ? console.log(err) : console.log("logo created")
+      )
     });
 };
 
-function writeToFile(filename, data) {
-  fs.writeFile(filename, data, function(err){
-    console.log('svg file generated')
-  })
-}
+
 
 
 questions();
-
-//put these in the shapes.js folder
-const triangle = new Triangle()
-triangle.setColor(`${shape_color}`)
-expect(triangle.render()).toEqual('<polygon points="150, 18 244, 182 56, 182" fill="${shape_color}"/>')
-
-const square = new Square()
-square.setColor(`${shape_color}`)
-expect(square.render()).toEqual('<polygon points="" fill="${shape_color}"/>')
-
-const circle = new Circle()
-circle.setColor(`${shape_color}`)
-expect(circle.render()).toEqual('<polygon points="" fill="${shape_color}"/>')
