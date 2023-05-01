@@ -72,11 +72,6 @@ const questions = () => {
     });
 };
 
-//     function genTemplate(Triangle, Square, Circle) {
-//       answers.text =
-//     }
-// };
-
 function writeFile(name, solution) {
   fs.writeFile(name, solution, (err) => {
     if (err) {
@@ -90,6 +85,3 @@ function writeFile(name, solution) {
 questions();
 
 //jest is installed. Should run code using jest
-
-// ask jaime why this isn't working.
-// ${shape.render(answers.shape_color)}
